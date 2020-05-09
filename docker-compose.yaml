@@ -1,11 +1,11 @@
 version: '3'
 services:
   database:
-    image: 'postgres:12.2'
+    image: 'postgres'
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
-      - POSTGRES_MULTIPLE_DATABASES=cata_command,cata_history,cata_query
+      - POSTGRES_MULTIPLE_DATABASES="cata_reports","cata_emails","cata_trips","cata_authorization"
     volumes:
       - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
       - ./pg-init-scripts:/docker-entrypoint-initdb.d
@@ -13,7 +13,7 @@ services:
       - 5432:5432
 
   axonserver:
-    image: 'axoniq/axonserver:4.3.3'''
+    image: 'axoniq/axonserver:4.3.3'
     ports:
       - 8024:8024
       - 8124:8124
