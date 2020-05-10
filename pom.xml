@@ -19,10 +19,12 @@
 
 
 	<modules>
-		<module>authorization-microservice</module>
-		<module>email-microservice</module>
-		<module>reports-microservice</module>
-		<module>trips-microservice</module>
-	</modules>
+        <module>authorization</module>
+        <module>email</module>
+        <module>reports</module>
+        <module>trips</module>
+        <module>eureka-server</module>
+        <module>eureka-gateway</module>
+    </modules>
 
 </project>

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: eureka-gateway
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
