@@ -1,9 +1,14 @@
 spring:
   application:
     name: eureka-gateway
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
 
 server:
   port: 8080
+
 
 eureka:
   client:

@@ -1,13 +1,13 @@
-package hr.fer.cata;
+package hr.fer.cata.email;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ReportsApplication {
+public class EmailsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ReportsApplication.class, args);
+		SpringApplication.run(EmailsApplication.class, args);
 	}
 
 }

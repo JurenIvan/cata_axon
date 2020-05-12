@@ -1,4 +1,4 @@
-package hr.fer.gateway.interfaces;
+package hr.fer.connector.interfaces;
 
 import org.springframework.cloud.openfeign.FeignClient;
 

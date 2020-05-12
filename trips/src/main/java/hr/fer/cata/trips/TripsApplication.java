@@ -1,4 +1,4 @@
-package hr.fer.cata;
+package hr.fer.cata.trips;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -19,6 +19,7 @@
 
 
 	<modules>
+        <module>connector</module>
         <module>authorization</module>
         <module>email</module>
         <module>reports</module>

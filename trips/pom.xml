@@ -94,8 +94,8 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
         <dependency>
-            <groupId>hr.fer.gateway</groupId>
-            <artifactId>eureka-gateway</artifactId>
+            <groupId>hr.fer.connector</groupId>
+            <artifactId>connector</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

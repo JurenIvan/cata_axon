@@ -1,6 +1,7 @@
 package hr.fer.gateway.controllers;
 
-import hr.fer.gateway.interfaces.TripsREST;
+
+import hr.fer.connector.interfaces.TripsREST;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
