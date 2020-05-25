@@ -15,7 +15,6 @@ public class AuthGatewayController {
     @Autowired
     private AuthREST authREST;
 
-
     @PostMapping("/authenticate")
     public AuthenticationResponseDto createAuthenticationToken2(@RequestBody AuthenticationRequestDto authenticationRequest) {
         return authREST.createAuthenticationToken(authenticationRequest);
