@@ -10,5 +10,4 @@ public interface EmailREST {
 //
 //    @GetMapping("/get-sent-emails")
 //    void getHistory();
-
 }

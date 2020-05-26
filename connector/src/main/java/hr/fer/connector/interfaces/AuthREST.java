@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface AuthREST {
 
     @PostMapping("/authenticate")
-    public AuthenticationResponseDto createAuthenticationToken(@RequestBody AuthenticationRequestDto authenticationRequest);
+    AuthenticationResponseDto createAuthenticationToken(@RequestBody AuthenticationRequestDto authenticationRequest);
 
     @PostMapping("/register")
-    public void registerUser(@RequestBody RegisterRequestDto registerRequestDto);
+    void registerUser(@RequestBody RegisterRequestDto registerRequestDto);
 
     @PostMapping("/auth/jwt")
-    public PersonDto getUserForJWT(@RequestBody JWTokenDto jwTokenDto);
-
+    PersonDto getUserForJWT(@RequestBody JWTokenDto jwTokenDto);
 }

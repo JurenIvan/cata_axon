@@ -1,12 +1,12 @@
 package hr.fer.gateway.controllers;
 
 import hr.fer.connector.interfaces.EmailREST;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class EmailGatewayController {
 
-    @Autowired
-    private EmailREST emailREST;
+    private final EmailREST emailREST;
 }

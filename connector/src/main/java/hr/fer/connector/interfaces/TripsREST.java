@@ -11,7 +11,7 @@ import java.util.List;
 public interface TripsREST {
 
     @RequestMapping("/trip/{applicationName}")
-    String example1(@PathVariable String applicationName, @RequestHeader(value = "Authorization") String accessToken);
+    String example1(@PathVariable String applicationName, @RequestHeader(value = "Authorization") String accessToken);      //todo delete
 
     @PostMapping("/create-trip")
     void createTrip(@RequestBody TripDto tripDto, @RequestHeader(value = "Authorization") String accessToken);

@@ -29,5 +29,4 @@ public class AuthGatewayController {
         LOGGER.info("registerUser " + registerRequestDto);
         authREST.registerUser(registerRequestDto);
     }
-
 }

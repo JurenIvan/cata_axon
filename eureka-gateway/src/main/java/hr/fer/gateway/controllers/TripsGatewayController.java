@@ -71,5 +71,4 @@ public class TripsGatewayController {
         LOGGER.info("viewTrips");
         return tripsREST.viewTrips();
     }
-
 }
