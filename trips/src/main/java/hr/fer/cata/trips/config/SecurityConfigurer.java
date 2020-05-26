@@ -1,6 +1,6 @@
-package hr.fer.cata.auth.config;
+package hr.fer.cata.trips.config;
 
-import hr.fer.cata.auth.service.PersonService;
+import hr.fer.cata.trips.service.ContextService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,9 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.http.HttpMethod.POST;
-
+import static org.springframework.http.HttpMethod.GET;
 
 @EnableWebSecurity
 @AllArgsConstructor
@@ -24,11 +24,11 @@ import static org.springframework.http.HttpMethod.POST;
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     private final JwtRequestFilter jwtRequestFilter;
-    private final PersonService personService;
+    private final ContextService contextService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(personService);
+        auth.userDetailsService(contextService);
     }
 
     @Override
@@ -36,11 +36,13 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 
         httpSecurity.cors().and()
-                .csrf().disable().authorizeRequests().antMatchers(POST, "/").permitAll();
+                .csrf().disable().authorizeRequests()
+                .antMatchers(GET, "/view-trips").permitAll()
+                .anyRequest().authenticated();
 
-//        httpSecurity
-//                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-//                .exceptionHandling();
+        httpSecurity
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling();
 
         httpSecurity
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -57,13 +59,4 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:8080"));
-//        configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
 }

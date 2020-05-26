@@ -6,7 +6,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "hr.fer.gateway.controllers")
 @EnableFeignClients(basePackages = "hr.fer.connector")
 @RibbonClient(name = "default", configuration = RibbonEurekaAutoConfiguration.class)
 public class GatewayApplication {
