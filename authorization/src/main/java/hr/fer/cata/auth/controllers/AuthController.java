@@ -19,18 +19,21 @@ public class AuthController implements AuthREST {
     @Override
     @PostMapping("/authenticate")
     public AuthenticationResponseDto createAuthenticationToken(@RequestBody AuthenticationRequestDto authenticationRequest) {
+        System.out.println(authenticationRequest);
         return authService.createAuthenticationToken(authenticationRequest.getPassword(), authenticationRequest.getEmail());
     }
 
     @Override
     @PostMapping("/register")
     public void registerUser(@RequestBody RegisterRequestDto registerRequestDto) {
+        System.out.println(registerRequestDto);
         peopleService.registerUser(registerRequestDto.getEmail(), registerRequestDto.getNickname(), registerRequestDto.getPassword());
     }
 
     @PostMapping("/auth/jwt")
     @Override
     public PersonDto getUserForJWT(@RequestBody JWTokenDto jwTokenDto) {
+        System.out.println(jwTokenDto);
         return peopleService.getUserForJWT(jwTokenDto.getJwt());
     }
 }
