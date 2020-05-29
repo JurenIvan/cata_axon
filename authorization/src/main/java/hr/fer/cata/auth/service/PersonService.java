@@ -2,7 +2,7 @@ package hr.fer.cata.auth.service;
 
 import hr.fer.cata.auth.model.Person;
 import hr.fer.cata.auth.repository.PersonRepository;
-import hr.fer.connector.dto.auth.PersonDto;
+import hr.fer.connector.model.ContextHolder;
 import hr.fer.connector.model.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,7 +23,7 @@ public class PersonService implements UserDetailsService {
         personRepository.save(new Person(null, email, nickname, Role.GUEST, BCrypt.hashpw(password, BCrypt.gensalt(10))));
     }
 
-    public PersonDto getUserForJWT(String jwt) {
+    public ContextHolder getUserForJWT(String jwt) {
         return personRepository.findAllByEmail(jwtTokenUtil.extractEmail(jwt)).orElseThrow(() -> new IllegalArgumentException("Illegal token")).toDto();
     }
 

@@ -1,6 +1,6 @@
 package hr.fer.cata.auth.model;
 
-import hr.fer.connector.dto.auth.PersonDto;
+import hr.fer.connector.model.ContextHolder;
 import hr.fer.connector.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -71,7 +71,7 @@ public class Person implements UserDetails {
         return true;
     }
 
-    public PersonDto toDto() {
-        return new PersonDto(id, email, nickname, role);
+    public ContextHolder toDto() {
+        return new ContextHolder(id, email, nickname, role);
     }
 }
