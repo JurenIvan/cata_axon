@@ -17,7 +17,7 @@ data class DenyUserToTripCmd(@TargetAggregateIdentifier val tripId: String, val 
 
 data class TripCreatedEvt(val id: String, val title: String, val description: String, val price: Double, val date: LocalDateTime, val cancelationDate: LocalDateTime)
 data class TripUpdatedEvt(val id: String, val title: String, val description: String, val price: Double, val date: LocalDateTime, val cancelationDate: LocalDateTime)
-data class TripCanceledEvt(val tripId: String, val userId: Long)
+data class TripCanceledEvt(val tripId: String, val userId: Long, val approvedUsersId: MutableSet<Long>)
 
 data class JoinedTripEvt(val tripId: String, val userId: Long)
 data class UserLeftPendingTripEvt(val tripId: String, val userId: Long)

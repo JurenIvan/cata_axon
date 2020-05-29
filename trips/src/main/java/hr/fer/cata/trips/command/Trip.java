@@ -106,7 +106,7 @@ public class Trip {
         if (cancellationDate.isBefore(now()))
             throw new IllegalStateException("Cancelation date passed");
 
-        apply(new TripCanceledEvt(cmd.getTripId(), cmd.getUserId()));
+        apply(new TripCanceledEvt(cmd.getTripId(), cmd.getUserId(), approvedUsersId));
     }
 
     @CommandHandler
@@ -169,11 +169,6 @@ public class Trip {
     @EventSourcingHandler
     public void handle(UserLeftPendingTripEvt cmd) {
         pendingUsersId.remove(cmd.getUserId());
-    }
-
-    @EventSourcingHandler
-    public void handle(TripCanceledEvt cmd) {
-
     }
 
     @EventSourcingHandler

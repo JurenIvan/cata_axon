@@ -12,10 +12,10 @@ server:
   port: 0
 spring:
   application:
-    name: cata-trips
+    name: cata-emails
   datasource:
     password: root
-    url: jdbc:postgresql://localhost:5432/cata_trips
+    url: jdbc:postgresql://localhost:5432/cata_emails
     username: root
   jpa:
     generate-ddl: true
@@ -24,3 +24,14 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: create-drop
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: cata.noreply@gmail.com
+    password: cata123456789
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.connectiontimeout: 5000
+    properties.mail.smtp.timeout: 5000
+    properties.mail.smtp.writetimeout: 500
