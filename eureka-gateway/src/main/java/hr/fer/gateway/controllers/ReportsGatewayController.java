@@ -22,7 +22,7 @@ public class ReportsGatewayController {
     private final ReportsREST reportsREST;
 
     @GetMapping("/reports/trips-per-month/{year}")
-    List<TripMonth> getTripsPerMonth(@PathVariable Integer year, @RequestHeader(value = "Authorization") String accessToken) {
+    List<TripMonth> getTripsPerMonth(@PathVariable("year") Integer year, @RequestHeader(value = "Authorization") String accessToken) {
         LOGGER.info("getTripsPerMonth " + year);
         return reportsREST.getTripsPerMonth(year, accessToken);
     }

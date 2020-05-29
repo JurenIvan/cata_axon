@@ -1,8 +1,8 @@
 package hr.fer.gateway.controllers;
 
 
+import hr.fer.connector.dto.trips.TripDetailsDto;
 import hr.fer.connector.dto.trips.TripDto;
-import hr.fer.connector.dto.trips.UserTrip;
 import hr.fer.connector.interfaces.TripsREST;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -18,57 +18,49 @@ public class TripsGatewayController {
     private static final Logger LOGGER = LoggerFactory.getLogger(TripsGatewayController.class);
     private final TripsREST tripsREST;
 
-    @RequestMapping("/trip/{applicationName}")
-    public String example1(@PathVariable String applicationName, @RequestHeader("Authorization") String accessToken) {
-        LOGGER.info("example1" + applicationName + " " + accessToken);
-        return tripsREST.example1(applicationName, accessToken);
-    }
-
     @PostMapping("/create-trip")
-    public void createTrip(@RequestBody TripDto tripDto, @RequestHeader(value = "Authorization") String accessToken) {
+    public String createTrip(@RequestBody TripDto tripDto, @RequestHeader(value = "Authorization") String accessToken) {
         LOGGER.info("createTrip" + tripDto + " " + accessToken);
-        tripsREST.createTrip(tripDto, accessToken);
+        return tripsREST.createTrip(tripDto, accessToken);
     }
 
-    @PostMapping("/join-trip")
-    public void joinTrip(@RequestBody UserTrip userTrip, @RequestHeader(value = "Authorization") String accessToken) {
-        LOGGER.info("joinTrip" + userTrip + " " + accessToken);
-        tripsREST.joinTrip(userTrip, accessToken);
+    @PostMapping("/edit-trip")
+    public void editTrip(@RequestBody TripDto tripDto, @RequestHeader(value = "Authorization") String accessToken) {
+        tripsREST.editTrip(tripDto, accessToken);
     }
 
-    @PostMapping("/leave-trip")
-    public void leaveTrip(@RequestBody UserTrip userTrip, @RequestHeader(value = "Authorization") String accessToken) {
-        LOGGER.info("leaveTrip" + userTrip + " " + accessToken);
-        tripsREST.leaveTrip(userTrip, accessToken);
+    @PostMapping("/join-trip/{tripId}")
+    public void joinTrip(@PathVariable String tripId, @RequestHeader(value = "Authorization") String accessToken) {
+        tripsREST.joinTrip(tripId, accessToken);
     }
 
-    @PostMapping("/approve")
-    public void approveTrip(@RequestBody UserTrip userTrip, @RequestHeader(value = "Authorization") String accessToken) {
-        LOGGER.info("approveTrip " + userTrip + " " + accessToken);
-        tripsREST.approveTrip(userTrip, accessToken);
+    @PostMapping("/leave-trip/{tripId}")
+    public void leaveTrip(@PathVariable String tripId, @RequestHeader(value = "Authorization") String accessToken) {
+        tripsREST.leaveTrip(tripId, accessToken);
     }
 
-    @PostMapping("/dissmiss")
-    public void dismissTrip(@RequestBody UserTrip userTrip, @RequestHeader(value = "Authorization") String accessToken) {
-        LOGGER.info("dismissTrip " + userTrip + " " + accessToken);
-        tripsREST.dismissTrip(userTrip, accessToken);
+    @PostMapping("/dissmiss/{tripId}")
+    public void dismissTrip(@PathVariable String tripId, @RequestHeader(value = "Authorization") String accessToken) {
+        tripsREST.dismissTrip(tripId, accessToken);
     }
 
-    @PostMapping("/accept-user")
-    public void acceptUserToTrip(UserTrip userTrip, @RequestHeader(value = "Authorization") String accessToken) {
-        LOGGER.info("acceptUserToTrip " + userTrip + " " + accessToken);
-        tripsREST.acceptUserToTrip(userTrip, accessToken);
+    @PostMapping("/accept-user/{tripId}/{userId}")
+    public void acceptUserToTrip(@PathVariable String tripId, @PathVariable Long userId, @RequestHeader(value = "Authorization") String accessToken) {
+        tripsREST.acceptUserToTrip(tripId, userId, accessToken);
     }
 
-    @PostMapping("/deny-user")
-    public void denyUserToTrip(UserTrip userTrip, @RequestHeader(value = "Authorization") String accessToken) {
-        LOGGER.info("denyUserToTrip " + userTrip + " " + accessToken);
-        tripsREST.denyUserToTrip(userTrip, accessToken);
+    @PostMapping("/deny-user/{tripId}/{userId}")
+    public void denyUserToTrip(@PathVariable String tripId, @PathVariable Long userId, @RequestHeader(value = "Authorization") String accessToken) {
+        tripsREST.denyUserToTrip(tripId, userId, accessToken);
     }
 
     @GetMapping("/view-trips")
     public List<TripDto> viewTrips() {
-        LOGGER.info("viewTrips");
         return tripsREST.viewTrips();
+    }
+
+    @GetMapping("/view-trip/{tripId}")
+    public TripDetailsDto viewTrips(@PathVariable String tripId, @RequestHeader(value = "Authorization") String accessToken) {
+        return tripsREST.viewTrip(tripId, accessToken);
     }
 }
