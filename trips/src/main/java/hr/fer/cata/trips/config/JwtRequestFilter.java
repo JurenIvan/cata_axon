@@ -1,8 +1,8 @@
 package hr.fer.cata.trips.config;
 
 import hr.fer.connector.dto.auth.JWTokenDto;
-import hr.fer.connector.dto.auth.PersonDto;
 import hr.fer.connector.interfaces.AuthREST;
+import hr.fer.connector.model.ContextHolder;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,18 +29,18 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         final String authorizationHeader = request.getHeader("Authorization");
-        PersonDto person = null;
+        ContextHolder contextHolder = null;
         String jwt = null;
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
-            person = authREST.getUserForJWT(new JWTokenDto(jwt));
+            contextHolder = authREST.getUserForJWT(new JWTokenDto(jwt));
         }
 
-        if (person != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if (contextHolder != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                    person, null, List.of(new SimpleGrantedAuthority(person.getRole().name())));
+                    contextHolder, null, List.of(new SimpleGrantedAuthority(contextHolder.getRole().name())));
             usernamePasswordAuthenticationToken
                     .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
