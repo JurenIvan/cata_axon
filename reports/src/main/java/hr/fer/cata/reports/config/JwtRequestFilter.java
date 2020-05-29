@@ -1,8 +1,8 @@
 package hr.fer.cata.reports.config;
 
 import hr.fer.connector.dto.auth.JWTokenDto;
-import hr.fer.connector.dto.auth.PersonDto;
 import hr.fer.connector.interfaces.AuthREST;
+import hr.fer.connector.model.ContextHolder;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,7 +29,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         final String authorizationHeader = request.getHeader("Authorization");
-        PersonDto person = null;
+        ContextHolder person = null;
         String jwt = null;
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
