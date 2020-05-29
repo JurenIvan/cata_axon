@@ -1,6 +1,6 @@
 package hr.fer.cata.trips.projections.availabletrips;
 
-import hr.fer.cata.trips.api.*;
+import hr.fer.connector.api.*;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;

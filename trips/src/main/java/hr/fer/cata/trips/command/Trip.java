@@ -1,6 +1,6 @@
 package hr.fer.cata.trips.command;
 
-import hr.fer.cata.trips.api.*;
+import hr.fer.connector.api.*;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;

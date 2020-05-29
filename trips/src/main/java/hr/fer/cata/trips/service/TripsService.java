@@ -1,9 +1,9 @@
 package hr.fer.cata.trips.service;
 
-import hr.fer.cata.trips.api.*;
 import hr.fer.cata.trips.projections.availabletrips.TripOverview;
 import hr.fer.cata.trips.projections.availabletrips.TripOverviewProjection;
 import hr.fer.cata.trips.projections.details.TripDetailsProjection;
+import hr.fer.connector.api.*;
 import hr.fer.connector.dto.trips.TripDetailsDto;
 import hr.fer.connector.dto.trips.TripDto;
 import lombok.RequiredArgsConstructor;

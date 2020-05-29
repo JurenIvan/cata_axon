@@ -1,4 +1,4 @@
-package hr.fer.cata.trips.api
+package hr.fer.connector.api
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.time.LocalDateTime
