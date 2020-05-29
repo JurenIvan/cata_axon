@@ -14,7 +14,7 @@ import java.util.List;
 public interface ReportsREST {
 
     @GetMapping("/reports/trips-per-month/{year}")
-    List<TripMonth> getTripsPerMonth(@PathVariable Integer year, @RequestHeader(value = "Authorization") String accessToken);
+    List<TripMonth> getTripsPerMonth(@PathVariable("year") Integer year, @RequestHeader(value = "Authorization") String accessToken);
 
     @GetMapping("/reports/trips-per-year")
     List<TripYear> getTripsPerMonthPerYear(@RequestHeader(value = "Authorization") String accessToken);

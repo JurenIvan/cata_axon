@@ -1,6 +1,10 @@
 package hr.fer.connector.interfaces;
 
-import hr.fer.connector.dto.auth.*;
+import hr.fer.connector.dto.auth.AuthenticationRequestDto;
+import hr.fer.connector.dto.auth.AuthenticationResponseDto;
+import hr.fer.connector.dto.auth.JWTokenDto;
+import hr.fer.connector.dto.auth.RegisterRequestDto;
+import hr.fer.connector.model.ContextHolder;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,5 +19,5 @@ public interface AuthREST {
     void registerUser(@RequestBody RegisterRequestDto registerRequestDto);
 
     @PostMapping("/auth/jwt")
-    PersonDto getUserForJWT(@RequestBody JWTokenDto jwTokenDto);
+    ContextHolder getUserForJWT(@RequestBody JWTokenDto jwTokenDto);
 }
