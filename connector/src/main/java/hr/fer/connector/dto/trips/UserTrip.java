@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class UserTrip {
 
     private long userId;
-    private long tripId;
+    private String tripId;
 }

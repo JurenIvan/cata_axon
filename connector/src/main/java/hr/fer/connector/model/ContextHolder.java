@@ -1,6 +1,5 @@
-package hr.fer.connector.dto.auth;
+package hr.fer.connector.model;
 
-import hr.fer.connector.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class PersonDto {
+public class ContextHolder {
 
     private Long id;
     private String email;

@@ -5,11 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TripDto {
+public class TripDetailsDto {
 
     private String tripId;
     private String title;
@@ -17,5 +18,10 @@ public class TripDto {
     private double price;
     private LocalDateTime date;
     private LocalDateTime cancellationDate;
-    private int passengersCount;
+
+    private List<Long> pendingUsersIds;
+    private List<Long> quittersWhilePendingUsersIds;
+    private List<Long> approvedUsersIds;
+    private List<Long> refusedUsersIds;
+    private List<Long> quittersUsersIds;
 }

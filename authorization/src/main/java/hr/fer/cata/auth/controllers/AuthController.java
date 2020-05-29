@@ -2,8 +2,12 @@ package hr.fer.cata.auth.controllers;
 
 import hr.fer.cata.auth.service.AuthService;
 import hr.fer.cata.auth.service.PersonService;
-import hr.fer.connector.dto.auth.*;
+import hr.fer.connector.dto.auth.AuthenticationRequestDto;
+import hr.fer.connector.dto.auth.AuthenticationResponseDto;
+import hr.fer.connector.dto.auth.JWTokenDto;
+import hr.fer.connector.dto.auth.RegisterRequestDto;
 import hr.fer.connector.interfaces.AuthREST;
+import hr.fer.connector.model.ContextHolder;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +40,7 @@ public class AuthController implements AuthREST {
 
     @PostMapping("/auth/jwt")
     @Override
-    public PersonDto getUserForJWT(@RequestBody JWTokenDto jwTokenDto) {
+    public ContextHolder getUserForJWT(@RequestBody JWTokenDto jwTokenDto) {
         LOGGER.info("getUserForJWT " + jwTokenDto);
         return peopleService.getUserForJWT(jwTokenDto.getJwt());
     }
