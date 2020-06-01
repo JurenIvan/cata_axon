@@ -1,6 +1,7 @@
 package hr.fer.gateway.controllers;
 
 
+import hr.fer.connector.dto.trips.CancelTripDto;
 import hr.fer.connector.dto.trips.TripDetailsDto;
 import hr.fer.connector.dto.trips.TripDto;
 import hr.fer.connector.interfaces.TripsREST;
@@ -39,9 +40,9 @@ public class TripsGatewayController {
         tripsREST.leaveTrip(tripId, accessToken);
     }
 
-    @PostMapping("/dissmiss/{tripId}")
-    public void dismissTrip(@PathVariable String tripId, @RequestHeader(value = "Authorization") String accessToken) {
-        tripsREST.dismissTrip(tripId, accessToken);
+    @PostMapping("/cancel-trip/{tripId}")
+    public void cancelTrip(@PathVariable String tripId, @RequestBody CancelTripDto cancelTripDto, @RequestHeader(value = "Authorization") String accessToken) {
+        tripsREST.cancelTrip(tripId, cancelTripDto, accessToken);
     }
 
     @PostMapping("/accept-user/{tripId}/{userId}")
