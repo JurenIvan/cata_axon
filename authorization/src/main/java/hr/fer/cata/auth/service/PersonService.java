@@ -24,11 +24,15 @@ public class PersonService implements UserDetailsService {
     }
 
     public ContextHolder getUserForJWT(String jwt) {
-        return personRepository.findAllByEmail(jwtTokenUtil.extractEmail(jwt)).orElseThrow(() -> new IllegalArgumentException("Illegal token")).toDto();
+        return personRepository.findAllByEmail(jwtTokenUtil.extractEmail(jwt)).orElseThrow(() -> new IllegalArgumentException("Illegal token")).toDto(jwt);
     }
 
     @Override
     public Person loadUserByUsername(String email) {
         return personRepository.findAllByEmail(email).orElseThrow(() -> new IllegalArgumentException("No such person"));
+    }
+
+    public ContextHolder getUserByUserId(Long userId) {
+        return personRepository.findById(userId).orElseThrow(() -> new IllegalStateException("No such user present")).toDto(null);
     }
 }

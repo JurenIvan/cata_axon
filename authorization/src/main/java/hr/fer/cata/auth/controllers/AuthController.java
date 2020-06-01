@@ -44,4 +44,10 @@ public class AuthController implements AuthREST {
         LOGGER.info("getUserForJWT " + jwTokenDto);
         return peopleService.getUserForJWT(jwTokenDto.getJwt());
     }
+
+    @Override
+    public ContextHolder getUserByUserId(Long userId) { //should have another dto
+        return peopleService.getUserByUserId(userId);
+    }
+
 }

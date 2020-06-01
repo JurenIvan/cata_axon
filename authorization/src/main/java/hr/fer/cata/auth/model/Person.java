@@ -71,7 +71,7 @@ public class Person implements UserDetails {
         return true;
     }
 
-    public ContextHolder toDto() {
-        return new ContextHolder(id, email, nickname, role);
+    public ContextHolder toDto(String jwt) {
+        return new ContextHolder(id, email, nickname, role, jwt);
     }
 }

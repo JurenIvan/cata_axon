@@ -6,6 +6,8 @@ import hr.fer.connector.dto.auth.JWTokenDto;
 import hr.fer.connector.dto.auth.RegisterRequestDto;
 import hr.fer.connector.model.ContextHolder;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -20,4 +22,7 @@ public interface AuthREST {
 
     @PostMapping("/auth/jwt")
     ContextHolder getUserForJWT(@RequestBody JWTokenDto jwTokenDto);
+
+    @GetMapping("/auth/user-id/{userId}")
+    ContextHolder getUserByUserId(@PathVariable Long userId);
 }
