@@ -1,0 +1,505 @@
+{
+  "info": {
+    "_postman_id": "2e8f993a-da34-474a-876f-d3e28a7b307e",
+    "name": "axon",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "trips",
+      "item": [
+        {
+          "name": "Create-trip",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE1OTA4NDc3MTEsImlhdCI6MTU5MDc2MTMxMX0._ifKP01EeAKWNKLZV1sSkriiSKVsVv-SnseeCLzU0zQ",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"id\":\"HAHAHAHAHAH\",\r\n\"title\":\"This ones for real friday\",\r\n\"description\":\"desc\",\r\n\"price\":12.2,\r\n\"date\":\"2020-06-05T21:53:52.952858400\",\r\n\"cancellationDate\":\"2020-05-29T21:53:52.954857500\",\r\n\"usersId\":null,\r\n\"confirmed\":false}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/create-trip",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "create-trip"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit-trip",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE1OTA3ODc0OTIsImlhdCI6MTU5MDcwMTA5Mn0.7IkTagHh5HbKrrfJmYaO5G3XcxjMun6wqeSQ7lt8O5I",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tripId\":\"F328C5A3-5E\",\r\n\"title\":\"Friday Edited\",\r\n\"description\":\"descEdited\",\r\n\"price\":120.2,\r\n\"date\":\"2020-06-10T21:53:52.952858400\",\r\n\"cancellationDate\":\"2020-05-30T21:53:52.954857500\"}\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/edit-trip",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "edit-trip"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Join-trip",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdXJlbi5pdmFuQGdtYWlsLmNvbSIsImV4cCI6MTU5MDgwMzc0NywiaWF0IjoxNTkwNzE3MzQ3fQ.mdOChjHcyXW51XN33K7qkztM5tVNUdFGaPxc_PNftkM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/join-trip/D86E3C27-8A",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "join-trip",
+                "D86E3C27-8A"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Approve-user-on-trip",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE1OTA3ODc0OTIsImlhdCI6MTU5MDcwMTA5Mn0.7IkTagHh5HbKrrfJmYaO5G3XcxjMun6wqeSQ7lt8O5I",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/accept-user/D86E3C27-8A/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "accept-user",
+                "D86E3C27-8A",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel-trip",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE1OTA3ODc0OTIsImlhdCI6MTU5MDcwMTA5Mn0.7IkTagHh5HbKrrfJmYaO5G3XcxjMun6wqeSQ7lt8O5I"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"explanation\":\"hahahaha baited twice\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/cancel-trip/D86E3C27-8A",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "cancel-trip",
+                "D86E3C27-8A"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Leave-trip",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdXJlbi5pdmFuQGdtYWlsLmNvbSIsImV4cCI6MTU5MDgwMzc0NywiaWF0IjoxNTkwNzE3MzQ3fQ.mdOChjHcyXW51XN33K7qkztM5tVNUdFGaPxc_PNftkM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"id\":\"HAHAHAHAHAH\",\r\n\"title\":\"title\",\r\n\"description\":\"desc\",\r\n\"price\":12.2,\r\n\"date\":\"2020-06-05T21:53:52.952858400\",\r\n\"cancellationDate\":\"2020-05-28T21:53:52.954857500\",\r\n\"usersId\":null,\r\n\"confirmed\":false}\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/leave-trip/F328C5A3-5E",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "leave-trip",
+                "F328C5A3-5E"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "View-trips",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE1OTA2MDg4ODAsImlhdCI6MTU5MDUyMjQ4MH0.E_bnbGcSSIkCOZrl8MgwVtvHhI2PJPeq0cdqNSu8kH8",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/view-trips",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "view-trips"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "View-trips DETAILS",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE1OTA4NDc4OTksImlhdCI6MTU5MDc2MTQ5OX0.VBAzXSvCBK9Rnxb4wyCCn-ceFNTbuIaHyA59Z2qGjJc"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/view-trip/7D0068B9-A7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "view-trip",
+                "7D0068B9-A7"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "Internal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"jwt\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdXJlbi5pdmFuQGdtYWlsLmNvbSIsImV4cCI6MTU5MDgwMzc0NywiaWF0IjoxNTkwNzE3MzQ3fQ.mdOChjHcyXW51XN33K7qkztM5tVNUdFGaPxc_PNftkM\"}"
+            },
+            "url": {
+              "raw": "http://localhost:51254/auth/jwt",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "51254",
+              "path": [
+                "auth",
+                "jwt"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RegisterUser",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"admin@gmail.com\",\"password\":\"123456789\",\"nickname\":\"admin\"}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login - admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"admin@gmail.com\",\"password\":\"123456789\"}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/authenticate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "authenticate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login - guest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"juren.ivan@gmail.com\",\"password\":\"123456789\"}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/authenticate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "authenticate"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "reports",
+      "item": [
+        {
+          "name": "getTripsPerMonth",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE1OTA5NTQ2MzYsImlhdCI6MTU5MDg2ODIzNn0.I-oy7UueZN4IbbHKx36J6Jl2spgOX9iDJw-4dW2oOQg",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/reports/trips-per-month/2020",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reports",
+                "trips-per-month",
+                "2020"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "passengers-per-month",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE1OTA5NTQ2MzYsImlhdCI6MTU5MDg2ODIzNn0.I-oy7UueZN4IbbHKx36J6Jl2spgOX9iDJw-4dW2oOQg",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/reports/passengers-per-year",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reports",
+                "passengers-per-year"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "passenger-history",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE1OTA5NTQ2MzYsImlhdCI6MTU5MDg2ODIzNn0.I-oy7UueZN4IbbHKx36J6Jl2spgOX9iDJw-4dW2oOQg",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/reports/passenger-history/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reports",
+                "passenger-history",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
