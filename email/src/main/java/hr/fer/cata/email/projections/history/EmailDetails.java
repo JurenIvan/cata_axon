@@ -5,7 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.Instant;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @NoArgsConstructor
@@ -14,8 +18,9 @@ import javax.persistence.Id;
 public class EmailDetails {
 
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
     private String receiver;
     private String content;
-    private String senderApplication;
+    private Instant time;
 }

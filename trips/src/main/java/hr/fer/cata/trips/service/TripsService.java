@@ -39,14 +39,13 @@ public class TripsService {
             throw new IllegalStateException("Only admins can update events");
 
         commandGateway.send(new UpdateTripCmd(tripDto.getTripId(), tripDto.getTitle(), tripDto.getDescription(), tripDto.getPrice(), tripDto.getDate(), tripDto.getCancellationDate()));
-        //       todo notify users
     }
 
-    public void dismissTrip(String tripId) {
+    public void cancelTrip(String tripId, String explanation) {
         if (!contextService.getLoggedIn().getRole().equals(ADMIN))
             throw new IllegalStateException("Only guests can join trips");
 
-        commandGateway.send(new CancelTripCmd(tripId, contextService.getLoggedIn().getId()));
+        commandGateway.send(new CancelTripCmd(tripId, contextService.getLoggedIn().getId(), explanation));
     }
 
     public void joinTrip(String tripId) {

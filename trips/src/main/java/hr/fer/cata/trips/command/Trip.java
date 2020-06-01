@@ -106,7 +106,11 @@ public class Trip {
         if (cancellationDate.isBefore(now()))
             throw new IllegalStateException("Cancelation date passed");
 
-        apply(new TripCanceledEvt(cmd.getTripId(), cmd.getUserId(), approvedUsersId));
+        apply(new TripCanceledEvt(cmd.getTripId(), cmd.getAdminId(), cmd.getExplanation()));
+
+        for (var userId : approvedUsersId) {
+            apply(new CancelledTripMailSentEvt(userId, cmd.getExplanation()));
+        }
     }
 
     @CommandHandler

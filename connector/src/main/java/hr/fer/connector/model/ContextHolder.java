@@ -13,5 +13,6 @@ public class ContextHolder {
     private String email;
     private String nickname;
     private Role role;
+    private String jwtToken;
 
 }

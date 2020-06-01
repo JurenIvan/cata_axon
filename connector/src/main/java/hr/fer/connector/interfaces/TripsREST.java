@@ -1,5 +1,6 @@
 package hr.fer.connector.interfaces;
 
+import hr.fer.connector.dto.trips.CancelTripDto;
 import hr.fer.connector.dto.trips.TripDetailsDto;
 import hr.fer.connector.dto.trips.TripDto;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -23,7 +24,7 @@ public interface TripsREST {
     void leaveTrip(@PathVariable String tripId, @RequestHeader(value = "Authorization") String accessToken);
 
     @PostMapping("/dissmiss/{tripId}")
-    void dismissTrip(@PathVariable String tripId, @RequestHeader(value = "Authorization") String accessToken);
+    void cancelTrip(@PathVariable String tripId, @RequestBody CancelTripDto cancelTripDto, @RequestHeader(value = "Authorization") String accessToken);
 
     @PostMapping("/accept-user/{tripId}/{userId}")
     void acceptUserToTrip(@PathVariable String tripId, @PathVariable Long userId, @RequestHeader(value = "Authorization") String accessToken);
@@ -35,5 +36,5 @@ public interface TripsREST {
     List<TripDto> viewTrips();
 
     @GetMapping("/view-trip/{tripId}")
-    TripDetailsDto viewTrip(@PathVariable String tripId, String accessToken);
+    TripDetailsDto viewTrip(@PathVariable String tripId, @RequestHeader(value = "Authorization") String accessToken);
 }

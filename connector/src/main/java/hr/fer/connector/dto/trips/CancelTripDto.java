@@ -1,4 +1,4 @@
-package hr.fer.connector.dto.reports;
+package hr.fer.connector.dto.trips;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TripMonth {
+public class CancelTripDto {
 
-    private long tripCount;
-    private int month;
+    private String explanation;
 }

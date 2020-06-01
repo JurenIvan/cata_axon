@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @RestController
 @RequiredArgsConstructor
 public class EmailsController implements EmailREST {
@@ -15,12 +17,7 @@ public class EmailsController implements EmailREST {
     private final EmailService emailService;
 
     @Override
-    public void sendEmail(EmailDto email, String accessToken) {
-        emailService.sendEmail(email.getReceiver(), email.getContent());
-    }
-
-    @Override
     public List<EmailDto> getHistory(String accessToken) {
-        return emailService.getHistory();
+        return emailService.getHistory().stream().map(e -> new EmailDto(e.getReceiver(), e.getContent(), e.getTime())).collect(toList());
     }
 }

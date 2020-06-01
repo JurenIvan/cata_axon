@@ -1,6 +1,7 @@
 package hr.fer.cata.trips.controllers;
 
 import hr.fer.cata.trips.service.TripsService;
+import hr.fer.connector.dto.trips.CancelTripDto;
 import hr.fer.connector.dto.trips.TripDetailsDto;
 import hr.fer.connector.dto.trips.TripDto;
 import hr.fer.connector.interfaces.TripsREST;
@@ -39,8 +40,8 @@ public class TripsController implements TripsREST {
     }
 
     @Override
-    public void dismissTrip(String tripId, String accessToken) {
-        tripsService.dismissTrip(tripId);
+    public void cancelTrip(String tripId, CancelTripDto cancelTripDto, String accessToken) {
+        tripsService.cancelTrip(tripId, cancelTripDto.getExplanation());
     }
 
     @Override

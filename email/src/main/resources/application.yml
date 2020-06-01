@@ -29,9 +29,13 @@ spring:
     port: 587
     username: cata.noreply@gmail.com
     password: cata123456789
-    properties.mail.smtp.starttls.enable: true
-    properties.mail.smtp.starttls.required: true
-    properties.mail.smtp.auth: true
-    properties.mail.smtp.connectiontimeout: 5000
-    properties.mail.smtp.timeout: 5000
-    properties.mail.smtp.writetimeout: 500
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 500

@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class YearPassengerCount {
 
     private int year;
-    private int passengerCount;
+    private long passengerCount;
 }
