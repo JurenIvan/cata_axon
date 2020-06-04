@@ -4,6 +4,7 @@ package hr.fer.gateway.controllers;
 import hr.fer.connector.dto.trips.CancelTripDto;
 import hr.fer.connector.dto.trips.TripDetailsDto;
 import hr.fer.connector.dto.trips.TripDto;
+import hr.fer.connector.dto.trips.TripPreviewDto;
 import hr.fer.connector.interfaces.TripsREST;
 import hr.fer.gateway.services.ContextService;
 import lombok.RequiredArgsConstructor;
@@ -57,7 +58,7 @@ public class TripsGatewayController {
     }
 
     @GetMapping("/view-trips")
-    public List<TripDto> viewTrips() {
+    public List<TripPreviewDto> viewTrips() {
         return tripsREST.viewTrips();
     }
 

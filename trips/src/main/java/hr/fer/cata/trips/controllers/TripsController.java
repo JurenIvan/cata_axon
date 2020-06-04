@@ -4,6 +4,7 @@ import hr.fer.cata.trips.service.TripsService;
 import hr.fer.connector.dto.trips.CancelTripDto;
 import hr.fer.connector.dto.trips.TripDetailsDto;
 import hr.fer.connector.dto.trips.TripDto;
+import hr.fer.connector.dto.trips.TripPreviewDto;
 import hr.fer.connector.interfaces.TripsREST;
 import hr.fer.connector.model.ContextHolder;
 import lombok.RequiredArgsConstructor;
@@ -56,8 +57,8 @@ public class TripsController implements TripsREST {
     }
 
     @Override
-    public List<TripDto> viewTrips() {
-        return tripsService.viewTrips().stream().map(e -> new TripDto(e.getTripId(), e.getTitle(), e.getDescription(), e.getPrice(), e.getDate(), e.getCancellationDate(), e.getPassengersCount())).collect(toList());
+    public List<TripPreviewDto> viewTrips() {
+        return tripsService.viewTrips().stream().map(e -> new TripPreviewDto(e.getTripId(), e.getTitle(), e.getDescription(), e.getPrice(), e.getDate(), e.getCancellationDate(), e.getPassengersCount())).collect(toList());
     }
 
     @Override

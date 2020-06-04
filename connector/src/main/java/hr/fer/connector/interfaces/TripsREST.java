@@ -3,6 +3,7 @@ package hr.fer.connector.interfaces;
 import hr.fer.connector.dto.trips.CancelTripDto;
 import hr.fer.connector.dto.trips.TripDetailsDto;
 import hr.fer.connector.dto.trips.TripDto;
+import hr.fer.connector.dto.trips.TripPreviewDto;
 import hr.fer.connector.model.ContextHolder;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +38,7 @@ public interface TripsREST {
     void denyUserToTrip(@PathVariable String tripId, @PathVariable Long userId, @RequestBody ContextHolder contextHolder);
 
     @GetMapping("/view-trips")
-    List<TripDto> viewTrips();
+    List<TripPreviewDto> viewTrips();
 
     @GetMapping("/view-trip/{tripId}")
     TripDetailsDto viewTrip(@PathVariable String tripId, @RequestBody ContextHolder contextHolder);
