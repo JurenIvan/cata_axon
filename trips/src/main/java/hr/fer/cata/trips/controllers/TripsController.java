@@ -5,8 +5,9 @@ import hr.fer.connector.dto.trips.CancelTripDto;
 import hr.fer.connector.dto.trips.TripDetailsDto;
 import hr.fer.connector.dto.trips.TripDto;
 import hr.fer.connector.interfaces.TripsREST;
+import hr.fer.connector.model.ContextHolder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,38 +21,38 @@ public class TripsController implements TripsREST {
     private final TripsService tripsService;
 
     @Override
-    public String createTrip(TripDto tripDto, @RequestHeader(value = "Authorization") String accessToken) {
+    public String createTrip(@RequestBody TripDto tripDto) {
         return tripsService.createTrip(tripDto);
     }
 
     @Override
-    public void editTrip(TripDto tripDto, String accessToken) {
+    public void editTrip(@RequestBody TripDto tripDto) {
         tripsService.editTrip(tripDto);
     }
 
     @Override
-    public void joinTrip(String tripId, String accessToken) {
-        tripsService.joinTrip(tripId);
+    public void joinTrip(String tripId, @RequestBody ContextHolder contextHolder) {
+        tripsService.joinTrip(tripId, contextHolder);
     }
 
     @Override
-    public void leaveTrip(String tripId, String accessToken) {
-        tripsService.leaveTrip(tripId);
+    public void leaveTrip(String tripId, @RequestBody ContextHolder contextHolder) {
+        tripsService.leaveTrip(tripId, contextHolder);
     }
 
     @Override
-    public void cancelTrip(String tripId, CancelTripDto cancelTripDto, String accessToken) {
-        tripsService.cancelTrip(tripId, cancelTripDto.getExplanation());
+    public void cancelTrip(String tripId, CancelTripDto cancelTripDto) {
+        tripsService.cancelTrip(tripId, cancelTripDto);
     }
 
     @Override
-    public void acceptUserToTrip(String tripId, Long userId, String accessToken) {
-        tripsService.acceptUserToTrip(tripId, userId);
+    public void acceptUserToTrip(String tripId, Long userId, @RequestBody ContextHolder contextHolder) {
+        tripsService.acceptUserToTrip(tripId, userId, contextHolder);
     }
 
     @Override
-    public void denyUserToTrip(String tripId, Long userId, String accessToken) {
-        tripsService.denyUserToTrip(tripId, userId);
+    public void denyUserToTrip(String tripId, Long userId, @RequestBody ContextHolder contextHolder) {
+        tripsService.denyUserToTrip(tripId, userId, contextHolder);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class TripsController implements TripsREST {
     }
 
     @Override
-    public TripDetailsDto viewTrip(String tripId, String accessToken) {
-        return tripsService.viewTrip(tripId);
+    public TripDetailsDto viewTrip(String tripId, @RequestBody ContextHolder contextHolder) {
+        return tripsService.viewTrip(tripId, contextHolder);
     }
 }

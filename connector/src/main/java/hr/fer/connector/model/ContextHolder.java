@@ -15,4 +15,11 @@ public class ContextHolder {
     private Role role;
     private String jwtToken;
 
+    public void setAuthorizationPart(ContextHolder other) {
+        this.id = other.id;
+        this.email = other.email;
+        this.nickname = other.nickname;
+        this.role = other.role;
+        this.jwtToken = other.jwtToken;
+    }
 }

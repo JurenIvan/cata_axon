@@ -4,8 +4,10 @@ import hr.fer.cata.trips.projections.availabletrips.TripOverview;
 import hr.fer.cata.trips.projections.availabletrips.TripOverviewProjection;
 import hr.fer.cata.trips.projections.details.TripDetailsProjection;
 import hr.fer.connector.api.*;
+import hr.fer.connector.dto.trips.CancelTripDto;
 import hr.fer.connector.dto.trips.TripDetailsDto;
 import hr.fer.connector.dto.trips.TripDto;
+import hr.fer.connector.model.ContextHolder;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Service;
@@ -20,13 +22,12 @@ import static hr.fer.connector.model.Role.GUEST;
 @RequiredArgsConstructor
 public class TripsService {
 
-    private final ContextService contextService;
     private final CommandGateway commandGateway;
     private final TripOverviewProjection tripOverviewProjection;
     private final TripDetailsProjection tripDetailsProjection;
 
     public String createTrip(TripDto tripDto) {
-        if (!contextService.getLoggedIn().getRole().equals(ADMIN))
+        if (!tripDto.getRole().equals(ADMIN))
             throw new IllegalStateException("Only admins can create events");
 
         String id = UUID.randomUUID().toString().substring(0, 11).toUpperCase();
@@ -35,42 +36,42 @@ public class TripsService {
     }
 
     public void editTrip(TripDto tripDto) {
-        if (!contextService.getLoggedIn().getRole().equals(ADMIN))
+        if (!tripDto.getRole().equals(ADMIN))
             throw new IllegalStateException("Only admins can update events");
 
         commandGateway.send(new UpdateTripCmd(tripDto.getTripId(), tripDto.getTitle(), tripDto.getDescription(), tripDto.getPrice(), tripDto.getDate(), tripDto.getCancellationDate()));
     }
 
-    public void cancelTrip(String tripId, String explanation) {
-        if (!contextService.getLoggedIn().getRole().equals(ADMIN))
+    public void cancelTrip(String tripId, CancelTripDto cancelTripDto) {
+        if (!cancelTripDto.getRole().equals(ADMIN))
             throw new IllegalStateException("Only guests can join trips");
 
-        commandGateway.send(new CancelTripCmd(tripId, contextService.getLoggedIn().getId(), explanation));
+        commandGateway.send(new CancelTripCmd(tripId, cancelTripDto.getId(), cancelTripDto.getExplanation()));
     }
 
-    public void joinTrip(String tripId) {
-        if (!contextService.getLoggedIn().getRole().equals(GUEST))
+    public void joinTrip(String tripId, ContextHolder contextHolder) {
+        if (!contextHolder.getRole().equals(GUEST))
             throw new IllegalStateException("Only guests can join trips");
 
-        commandGateway.send(new JoinTripCmd(tripId, contextService.getLoggedIn().getId()));
+        commandGateway.send(new JoinTripCmd(tripId, contextHolder.getId()));
     }
 
-    public void leaveTrip(String tripId) {
-        if (!contextService.getLoggedIn().getRole().equals(GUEST))
+    public void leaveTrip(String tripId, ContextHolder contextHolder) {
+        if (!contextHolder.getRole().equals(GUEST))
             throw new IllegalStateException("Only guests can leave trips");
 
-        commandGateway.send(new LeaveTripCmd(tripId, contextService.getLoggedIn().getId()));
+        commandGateway.send(new LeaveTripCmd(tripId, contextHolder.getId()));
     }
 
-    public void acceptUserToTrip(String tripId, Long userId) {
-        if (!contextService.getLoggedIn().getRole().equals(ADMIN))
+    public void acceptUserToTrip(String tripId, Long userId, ContextHolder contextHolder) {
+        if (!contextHolder.getRole().equals(ADMIN))
             throw new IllegalStateException("Only admins can accept sser to trip");
 
         commandGateway.send(new AcceptUserToTripCmd(tripId, userId));
     }
 
-    public void denyUserToTrip(String tripId, Long userId) {
-        if (!contextService.getLoggedIn().getRole().equals(ADMIN))
+    public void denyUserToTrip(String tripId, Long userId, ContextHolder contextHolder) {
+        if (!contextHolder.getRole().equals(ADMIN))
             throw new IllegalStateException("Only admins can deny user from trip");
 
         commandGateway.send(new DenyUserToTripCmd(tripId, userId));
@@ -80,9 +81,9 @@ public class TripsService {
         return tripOverviewProjection.findAll();
     }
 
-    public TripDetailsDto viewTrip(String tripId) {
+    public TripDetailsDto viewTrip(String tripId, ContextHolder contextHolder) {
 
-        if (!contextService.getLoggedIn().getRole().equals(ADMIN))
+        if (!contextHolder.getRole().equals(ADMIN))
             throw new IllegalStateException("Only admins are authorized to see this data");
         return tripDetailsProjection.findOne(tripId);
     }

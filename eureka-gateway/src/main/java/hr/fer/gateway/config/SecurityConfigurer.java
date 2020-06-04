@@ -1,6 +1,6 @@
-package hr.fer.cata.reports.config;
+package hr.fer.gateway.config;
 
-import hr.fer.cata.reports.service.ContextService;
+import hr.fer.gateway.services.ContextService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +14,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 
 @EnableWebSecurity
 @AllArgsConstructor
@@ -35,6 +38,9 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
         httpSecurity.cors().and()
                 .csrf().disable().authorizeRequests()
+                .antMatchers(GET, "/view-trips").permitAll()
+                .antMatchers(POST, "/authenticate").permitAll()
+                .antMatchers(POST, "/register").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity
@@ -55,4 +61,5 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }

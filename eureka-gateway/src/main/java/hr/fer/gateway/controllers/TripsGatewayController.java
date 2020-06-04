@@ -5,9 +5,8 @@ import hr.fer.connector.dto.trips.CancelTripDto;
 import hr.fer.connector.dto.trips.TripDetailsDto;
 import hr.fer.connector.dto.trips.TripDto;
 import hr.fer.connector.interfaces.TripsREST;
+import hr.fer.gateway.services.ContextService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,43 +15,45 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TripsGatewayController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TripsGatewayController.class);
     private final TripsREST tripsREST;
+    private final ContextService contextService;
 
     @PostMapping("/create-trip")
-    public String createTrip(@RequestBody TripDto tripDto, @RequestHeader(value = "Authorization") String accessToken) {
-        LOGGER.info("createTrip" + tripDto + " " + accessToken);
-        return tripsREST.createTrip(tripDto, accessToken);
+    public String createTrip(@RequestBody TripDto tripDto) {
+        tripDto.setAuthorizationPart(contextService.getLoggedIn());
+        return tripsREST.createTrip(tripDto);
     }
 
     @PostMapping("/edit-trip")
-    public void editTrip(@RequestBody TripDto tripDto, @RequestHeader(value = "Authorization") String accessToken) {
-        tripsREST.editTrip(tripDto, accessToken);
+    public void editTrip(@RequestBody TripDto tripDto) {
+        tripDto.setAuthorizationPart(contextService.getLoggedIn());
+        tripsREST.editTrip(tripDto);
     }
 
     @PostMapping("/join-trip/{tripId}")
-    public void joinTrip(@PathVariable String tripId, @RequestHeader(value = "Authorization") String accessToken) {
-        tripsREST.joinTrip(tripId, accessToken);
+    public void joinTrip(@PathVariable String tripId) {
+        tripsREST.joinTrip(tripId, contextService.getLoggedIn());
     }
 
     @PostMapping("/leave-trip/{tripId}")
-    public void leaveTrip(@PathVariable String tripId, @RequestHeader(value = "Authorization") String accessToken) {
-        tripsREST.leaveTrip(tripId, accessToken);
+    public void leaveTrip(@PathVariable String tripId) {
+        tripsREST.leaveTrip(tripId, contextService.getLoggedIn());
     }
 
     @PostMapping("/cancel-trip/{tripId}")
-    public void cancelTrip(@PathVariable String tripId, @RequestBody CancelTripDto cancelTripDto, @RequestHeader(value = "Authorization") String accessToken) {
-        tripsREST.cancelTrip(tripId, cancelTripDto, accessToken);
+    public void cancelTrip(@PathVariable String tripId, @RequestBody CancelTripDto cancelTripDto) {
+        cancelTripDto.setAuthorizationPart(contextService.getLoggedIn());
+        tripsREST.cancelTrip(tripId, cancelTripDto);
     }
 
     @PostMapping("/accept-user/{tripId}/{userId}")
-    public void acceptUserToTrip(@PathVariable String tripId, @PathVariable Long userId, @RequestHeader(value = "Authorization") String accessToken) {
-        tripsREST.acceptUserToTrip(tripId, userId, accessToken);
+    public void acceptUserToTrip(@PathVariable String tripId, @PathVariable Long userId) {
+        tripsREST.acceptUserToTrip(tripId, userId, contextService.getLoggedIn());
     }
 
     @PostMapping("/deny-user/{tripId}/{userId}")
-    public void denyUserToTrip(@PathVariable String tripId, @PathVariable Long userId, @RequestHeader(value = "Authorization") String accessToken) {
-        tripsREST.denyUserToTrip(tripId, userId, accessToken);
+    public void denyUserToTrip(@PathVariable String tripId, @PathVariable Long userId) {
+        tripsREST.denyUserToTrip(tripId, userId, contextService.getLoggedIn());
     }
 
     @GetMapping("/view-trips")
@@ -61,7 +62,7 @@ public class TripsGatewayController {
     }
 
     @GetMapping("/view-trip/{tripId}")
-    public TripDetailsDto viewTrips(@PathVariable String tripId, @RequestHeader(value = "Authorization") String accessToken) {
-        return tripsREST.viewTrip(tripId, accessToken);
+    public TripDetailsDto viewTrips(@PathVariable String tripId) {
+        return tripsREST.viewTrip(tripId, contextService.getLoggedIn());
     }
 }
