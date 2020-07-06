@@ -24,5 +24,5 @@ public interface AuthREST {
     ContextHolder getUserForJWT(@RequestBody JWTokenDto jwTokenDto);
 
     @GetMapping("/auth/user-id/{userId}")
-    ContextHolder getUserByUserId(@PathVariable Long userId);
+    ContextHolder getUserByUserId(@PathVariable("userId") Long userId);
 }

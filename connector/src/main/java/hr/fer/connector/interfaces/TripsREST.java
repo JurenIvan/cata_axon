@@ -23,24 +23,25 @@ public interface TripsREST {
     void editTrip(@RequestBody TripDto tripDto);
 
     @PostMapping("/join-trip/{tripId}")
-    void joinTrip(@PathVariable String tripId, @RequestBody ContextHolder contextHolder);
+    void joinTrip(@PathVariable("tripId") String tripId, @RequestBody ContextHolder contextHolder);
 
     @PostMapping("/leave-trip/{tripId}")
-    void leaveTrip(@PathVariable String tripId, @RequestBody ContextHolder contextHolder);
+    void leaveTrip(@PathVariable("tripId") String tripId, @RequestBody ContextHolder contextHolder);
 
     @PostMapping("/dissmiss/{tripId}")
-    void cancelTrip(@PathVariable String tripId, @RequestBody CancelTripDto cancelTripDto);
+    void cancelTrip(@PathVariable("tripId") String tripId, @RequestBody CancelTripDto cancelTripDto);
 
     @PostMapping("/accept-user/{tripId}/{userId}")
-    void acceptUserToTrip(@PathVariable String tripId, @PathVariable Long userId, @RequestBody ContextHolder contextHolder);
+    void acceptUserToTrip(@PathVariable("tripId") String tripId, @PathVariable("userId") Long userId, @RequestBody ContextHolder contextHolder);
 
     @PostMapping("/deny-user/{tripId}/{userId}")
-    void denyUserToTrip(@PathVariable String tripId, @PathVariable Long userId, @RequestBody ContextHolder contextHolder);
+    void denyUserToTrip(@PathVariable("tripId") String tripId, @PathVariable("userId") Long userId, @RequestBody ContextHolder contextHolder);
 
     @GetMapping("/view-trips")
     List<TripPreviewDto> viewTrips();
 
     @GetMapping("/view-trip/{tripId}")
-    TripDetailsDto viewTrip(@PathVariable String tripId, @RequestBody ContextHolder contextHolder);
+    TripDetailsDto viewTrip(@PathVariable("tripId") String tripId, @RequestBody ContextHolder contextHolder);
 
 }
+

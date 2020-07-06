@@ -43,3 +43,4 @@ public class UserHistory {
         return new UserHistoryDto(userId, pending, accepted, pendinqQuit, acceptedQuit, refused);
     }
 }
+

@@ -31,6 +31,18 @@ public class Trip {
     private Set<Long> approvedUsersId;
     private Set<Long> pendingUsersId;
 
+    @CommandHandler
+    public void handle(AcceptUserToTripCmd cmd) {
+        log.debug("handling {}", cmd);
+
+        if (date.isBefore(now()))
+            throw new IllegalStateException("Trip in past");
+        if (!pendingUsersId.contains(cmd.getUserId()))
+            throw new IllegalStateException("User is not in pending list");
+
+        apply(new UserAcceptedOnTripEvt(cmd.getTripId(), cmd.getUserId()));
+    }
+
     public Trip() {
         log.debug("empty constructor invoked");
     }
@@ -111,18 +123,6 @@ public class Trip {
         for (var userId : approvedUsersId) {
             apply(new CancelledTripMailSentEvt(userId, cmd.getExplanation()));
         }
-    }
-
-    @CommandHandler
-    public void handle(AcceptUserToTripCmd cmd) {
-        log.debug("handling {}", cmd);
-
-        if (date.isBefore(now()))
-            throw new IllegalStateException("Trip in past");
-        if (!pendingUsersId.contains(cmd.getUserId()))
-            throw new IllegalStateException("User is not in pending list");
-
-        apply(new UserAcceptedOnTripEvt(cmd.getTripId(), cmd.getUserId()));
     }
 
     @CommandHandler

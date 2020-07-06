@@ -28,3 +28,4 @@ public class TripMonthCounter {
         passengerCountPerMonth = new ArrayList<>(nCopies(12, 0));
     }
 }
+

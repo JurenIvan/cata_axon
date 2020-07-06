@@ -23,7 +23,6 @@ import static org.springframework.http.HttpMethod.POST;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
-    private final JwtRequestFilter jwtRequestFilter;
     private final PersonService personService;
 
     @Override
@@ -34,13 +33,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-
         httpSecurity.cors().and()
                 .csrf().disable().authorizeRequests().antMatchers(POST, "/").permitAll();
-
-//        httpSecurity
-//                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-//                .exceptionHandling();
 
         httpSecurity
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

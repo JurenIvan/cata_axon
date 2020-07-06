@@ -26,6 +26,13 @@ public class TripsService {
     private final TripOverviewProjection tripOverviewProjection;
     private final TripDetailsProjection tripDetailsProjection;
 
+    public void acceptUserToTrip(String tripId, Long userId, ContextHolder contextHolder) {
+        if (!contextHolder.getRole().equals(ADMIN))
+            throw new IllegalStateException("Only admins can accept user to trip");
+
+        commandGateway.send(new AcceptUserToTripCmd(tripId, userId));
+    }
+
     public String createTrip(TripDto tripDto) {
         if (!tripDto.getRole().equals(ADMIN))
             throw new IllegalStateException("Only admins can create events");
@@ -61,13 +68,6 @@ public class TripsService {
             throw new IllegalStateException("Only guests can leave trips");
 
         commandGateway.send(new LeaveTripCmd(tripId, contextHolder.getId()));
-    }
-
-    public void acceptUserToTrip(String tripId, Long userId, ContextHolder contextHolder) {
-        if (!contextHolder.getRole().equals(ADMIN))
-            throw new IllegalStateException("Only admins can accept sser to trip");
-
-        commandGateway.send(new AcceptUserToTripCmd(tripId, userId));
     }
 
     public void denyUserToTrip(String tripId, Long userId, ContextHolder contextHolder) {

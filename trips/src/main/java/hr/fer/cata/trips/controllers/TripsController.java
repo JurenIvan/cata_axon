@@ -22,6 +22,21 @@ public class TripsController implements TripsREST {
     private final TripsService tripsService;
 
     @Override
+    public List<TripPreviewDto> viewTrips() {
+        return tripsService.viewTrips().stream().map(e -> new TripPreviewDto(e.getTripId(), e.getTitle(), e.getDescription(), e.getPrice(), e.getDate(), e.getCancellationDate(), e.getPassengersCount())).collect(toList());
+    }
+
+    @Override
+    public TripDetailsDto viewTrip(String tripId, @RequestBody ContextHolder contextHolder) {
+        return tripsService.viewTrip(tripId, contextHolder);
+    }
+
+    @Override
+    public void acceptUserToTrip(String tripId, Long userId, @RequestBody ContextHolder contextHolder) {
+        tripsService.acceptUserToTrip(tripId, userId, contextHolder);
+    }
+
+    @Override
     public String createTrip(@RequestBody TripDto tripDto) {
         return tripsService.createTrip(tripDto);
     }
@@ -47,22 +62,7 @@ public class TripsController implements TripsREST {
     }
 
     @Override
-    public void acceptUserToTrip(String tripId, Long userId, @RequestBody ContextHolder contextHolder) {
-        tripsService.acceptUserToTrip(tripId, userId, contextHolder);
-    }
-
-    @Override
     public void denyUserToTrip(String tripId, Long userId, @RequestBody ContextHolder contextHolder) {
         tripsService.denyUserToTrip(tripId, userId, contextHolder);
-    }
-
-    @Override
-    public List<TripPreviewDto> viewTrips() {
-        return tripsService.viewTrips().stream().map(e -> new TripPreviewDto(e.getTripId(), e.getTitle(), e.getDescription(), e.getPrice(), e.getDate(), e.getCancellationDate(), e.getPassengersCount())).collect(toList());
-    }
-
-    @Override
-    public TripDetailsDto viewTrip(String tripId, @RequestBody ContextHolder contextHolder) {
-        return tripsService.viewTrip(tripId, contextHolder);
     }
 }

@@ -21,5 +21,5 @@ public interface ReportsREST {
     List<YearPassengerCount> getNumberOfPassengersPerYearSuccess(@RequestBody ContextHolder contextHolder);
 
     @PostMapping("/reports/passenger-history/{userId}")
-    UserHistoryDto getUserHistory(@PathVariable Long userId, @RequestBody ContextHolder contextHolder);
+    UserHistoryDto getUserHistory(@PathVariable("userId") Long userId, @RequestBody ContextHolder contextHolder);
 }
